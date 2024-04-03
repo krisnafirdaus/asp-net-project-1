@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{8047B2D5-9131-4F90-92D5-4BEC1AC11A7D}|https">
+  <MonoDevelop.Ide.ItemProperties.krisna-dto PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="krisna-dto/Data/BookData.cs">
+    <Files>
+      <File FileName="krisna-dto/Program.cs" Line="1" Column="1" />
+      <File FileName="krisna-dto/Models/Book.cs" Line="15" Column="1" />
+      <File FileName="krisna-dto/Data/BookData.cs" Line="101" Column="25" />
+      <File FileName="krisna-dto/Controllers/WeatherForecastController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="krisna-dto" expanded="True">
+            <Node name="krisna-dto" expanded="True">
+              <Node name="Dependencies" selected="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
