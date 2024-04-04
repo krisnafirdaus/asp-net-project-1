@@ -39,6 +39,19 @@ namespace krisna_dto.Controllers
             return Ok(book);
         }
 
+        [HttpGet("GetByTitle")]
+        public IActionResult GetByTitle(string title)
+        {
+            Book? book = _bookData.GetByTitle(title);
+
+            if (book == null)
+            {
+                return NotFound("Data Not Found");
+            }
+
+            return Ok(book);
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] BookDTO bookDto)
         {
