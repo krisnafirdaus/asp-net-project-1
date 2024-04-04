@@ -22,8 +22,16 @@ namespace krisna_dto.Controllers
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-            List<Book> books = _bookData.GetAll();
-            return Ok(books);
+            try
+            {
+                List<Book> books = _bookData.GetAll();
+                return Ok(books);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            
         }
 
         [HttpGet("GetById")]

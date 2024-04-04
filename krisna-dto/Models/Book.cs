@@ -14,12 +14,3 @@ namespace krisna_dto.Models
         public DateTime Updated { get; set; }
     }
 }
-
-//private readonly IConfiguration _configuration;
-//private readonly string connectionString;
-
-//public BookData(IConfiguration configuration)
-//{
-//    _configuration = configuration;
-//    connectionString = _configuration.GetConnectionString("DefaultConnection");
-//}
