@@ -4,6 +4,7 @@ using krisna_dto.DTOs.Book;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static System.Reflection.Metadata.BlobBuilder;
+using Microsoft.AspNetCore.Authorization;
 
 namespace krisna_dto.Controllers
 {
@@ -20,6 +21,7 @@ namespace krisna_dto.Controllers
         }
 
         [HttpGet("GetAll")]
+        [Authorize]
         public IActionResult GetAll()
         {
             try

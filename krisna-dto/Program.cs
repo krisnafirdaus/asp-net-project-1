@@ -1,4 +1,7 @@
-﻿using krisna_dto.Data;
+﻿using System.Text;
+using krisna_dto.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +14,24 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<BookData>();
 builder.Services.AddScoped<UserData>();
 
-//builder.Services.AddCors();
+builder.Services.AddCors();
+
+var key = builder.Configuration.GetSection("JwtConfig:Key").Value;
+var JwtKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(
+    options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            ValidateIssuer = false,
+            ValidateAudience = false,
+            IssuerSigningKey = JwtKey,
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero
+        };
+    });
 
 var app = builder.Build();
 
@@ -24,12 +44,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//app.UseCors(builder =>
-//{
-    //builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+app.UseCors(builder =>
+{
+    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
 
-    //     builder.WithOrigins("https://localhost:3000", "https://localhost:3001").WithMethods("GET", "POST").AllowAnyHeader();
-//});
+    builder.WithOrigins("https://localhost:3000", "https://localhost:3001").WithMethods("GET", "POST").AllowAnyHeader();
+});
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

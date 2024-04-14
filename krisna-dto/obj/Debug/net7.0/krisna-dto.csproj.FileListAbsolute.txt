@@ -54,3 +54,11 @@
 /Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/obj/Debug/net7.0/krisna-dto.pdb
 /Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/obj/Debug/net7.0/krisna-dto.genruntimeconfig.cache
 /Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/obj/Debug/net7.0/ref/krisna-dto.dll
+/Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll

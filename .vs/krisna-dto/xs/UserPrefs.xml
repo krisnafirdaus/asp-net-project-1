@@ -1,29 +1,39 @@
 ﻿<Properties StartupConfiguration="{8047B2D5-9131-4F90-92D5-4BEC1AC11A7D}|https">
   <MonoDevelop.Ide.ItemProperties.krisna-dto PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="krisna-dto/Models/User.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="krisna-dto/Program.cs">
     <Files>
-      <File FileName="krisna-dto/Program.cs" />
+      <File FileName="krisna-dto/Program.cs" Line="16" Column="1" />
       <File FileName="krisna-dto/Controllers/WeatherForecastController.cs" />
       <File FileName="krisna-dto/Models/Book.cs" />
       <File FileName="krisna-dto/Data/BookData.cs" />
       <File FileName="krisna-dto/Controllers/BookController.cs" />
       <File FileName="krisna-dto/DTOs/Book/BookDTO.cs" />
       <File FileName="krisna-dto/Data/UserData.cs" />
-      <File FileName="krisna-dto/Models/User.cs" Line="14" Column="1" />
+      <File FileName="krisna-dto/Models/User.cs" />
       <File FileName="krisna-dto/Models/UserRole.cs" />
       <File FileName="krisna-dto/DTOs/User/UserDTO.cs" />
       <File FileName="krisna-dto/Controllers/UserController.cs" />
+      <File FileName="krisna-dto/appsettings.Development.json" />
+      <File FileName="krisna-dto/appsettings.json" />
+      <File FileName="krisna-dto/WeatherForecast.cs" />
+      <File FileName="krisna-dto/Properties/launchSettings.json" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="krisna-dto">
             <Node name="krisna-dto">
-              <Node name="Models" expanded="True">
-                <Node name="User.cs" selected="True" />
+              <Node name="Dependencies" expanded="True" selected="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="DTOs" expanded="True">
+                <Node name="User" expanded="True" />
               </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
               <Node name="appsettings.json" expanded="True" />
             </Node>
           </Node>
@@ -31,7 +41,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
