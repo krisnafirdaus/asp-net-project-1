@@ -9,6 +9,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<BookData>();
+builder.Services.AddScoped<UserData>();
+
+//builder.Services.AddCors();
 
 var app = builder.Build();
 
@@ -20,6 +23,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+//app.UseCors(builder =>
+//{
+    //builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+
+    //     builder.WithOrigins("https://localhost:3000", "https://localhost:3001").WithMethods("GET", "POST").AllowAnyHeader();
+//});
 
 app.UseAuthorization();
 
