@@ -18,43 +18,43 @@ namespace krisna_dto.Data
         // Single Sql Command
         //public bool CreateUserAccount(User user, UserRole userRole)
         //{
-        //	bool result = false;
+        //    bool result = false;
 
-        //	using (MySqlConnection connection = new MySqlConnection(_connectionString))
-        //	{
-        //		using (MySqlCommand command = new MySqlCommand())
-        //		{
-        //			command.Connection = connection;
-        //			command.Parameters.Clear();
+        //    using (MySqlConnection connection = new MySqlConnection(_connectionString))
+        //    {
+        //        using (MySqlCommand command = new MySqlCommand())
+        //        {
+        //            command.Connection = connection;
+        //            command.Parameters.Clear();
 
-        //			command.CommandText = "INSERT INTO Users (Id, Username, Password) VALUES (@id, @username, @password)";
+        //            command.CommandText = "INSERT INTO Users (Id, Username, Password) VALUES (@id, @username, @password)";
 
-        //			command.Parameters.AddWithValue("@id", user.Id);
-        //                  command.Parameters.AddWithValue("@username", user.Username);
-        //                  command.Parameters.AddWithValue("@password", user.Password);
+        //            command.Parameters.AddWithValue("@id", user.Id);
+        //            command.Parameters.AddWithValue("@username", user.Username);
+        //            command.Parameters.AddWithValue("@password", user.Password);
 
-        //			command.CommandText = "INSERT INTO UserRoles (UserId, Role) VALUES (@userId, @role)";
+        //            command.CommandText = "INSERT INTO UserRoles (UserId, Role) VALUES (@userId, @role)";
 
-        //			command.Parameters.AddWithValue("@userId", userRole.UserId);
-        //			command.Parameters.AddWithValue("@role", userRole.Role);
+        //            command.Parameters.AddWithValue("@userId", userRole.UserId);
+        //            command.Parameters.AddWithValue("@role", userRole.Role);
 
-        //                  try
-        //                  {
-        //                      connection.Open();
+        //            try
+        //            {
+        //                connection.Open();
 
-        //                      int execResult = command.ExecuteNonQuery();
+        //                int execResult = command.ExecuteNonQuery();
 
-        //                      result = execResult > 0 ? true : false;
-        //                  }
-        //                  catch
-        //                  {
-        //                      throw;
-        //                  }
-        //              }
+        //                result = execResult > 0 ? true : false;
+        //            }
+        //            catch
+        //            {
+        //                throw;
+        //            }
+        //        }
 
-        //	}
+        //    }
 
-        //           return result;
+        //    return result;
         //}
 
         // multiple sql command without transaction
@@ -79,7 +79,7 @@ namespace krisna_dto.Data
         //        command2.Parameters.Clear();
 
 
-        //        command2.CommandText = "INSERT INTO UserRoles (UserId, Role) VALUES (@userId, @role)";
+        //        command2.CommandText = "INSERT INTO UserRole (UserId, Role) VALUES (@userId, @role)";
         //        command2.Parameters.AddWithValue("@userId", userRole.UserId);
         //        command2.Parameters.AddWithValue("@role", userRole.Role);
 
@@ -102,7 +102,7 @@ namespace krisna_dto.Data
 
         //}
 
-        // multiple sql command (with transaction)
+        // multiple sql command(with transaction)
         public bool CreateUserAccount(User user, UserRole userRole)
         {
             bool result = false;
@@ -131,7 +131,7 @@ namespace krisna_dto.Data
                     command2.Parameters.Clear();
 
 
-                    command2.CommandText = "INSERT INTO UserRol (UserId, Role) VALUES (@userId, @role)";
+                    command2.CommandText = "INSERT INTO UserRoles (UserId, Role) VALUES (@userId, @role)";
                     command2.Parameters.AddWithValue("@userId", userRole.UserId);
                     command2.Parameters.AddWithValue("@role", userRole.Role);
 

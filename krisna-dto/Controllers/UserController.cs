@@ -7,7 +7,7 @@ using krisna_dto.Data;
 
 namespace krisna_dto.Controllers
 {
-    [Route("ap/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
 
 	public class UserController : ControllerBase
