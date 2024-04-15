@@ -183,7 +183,8 @@ namespace krisna_dto.Data
                             {
                                 Id = Guid.Parse(reader["Id"].ToString() ?? string.Empty),
                                 Username = reader["Username"].ToString() ?? string.Empty,
-                                Password = reader["Password"].ToString() ?? string.Empty
+                                Password = reader["Password"].ToString() ?? string.Empty,
+                                Email = reader["Email"].ToString() ?? string.Empty,
                             };
                         }
                     }
