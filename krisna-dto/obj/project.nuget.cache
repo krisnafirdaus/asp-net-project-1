@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "txVU45TfQV+9FaZCPa28HBHxd+/PRDOpCjjjUZ+41aNT1mR68zd20ZG8vUBD6PXb/ZdtLQzuOpYJ8M+njcc4LA==",
+  "dgSpecHash": "MY0WMRAvPr2I5alDHeFiy3/LGY3YT1xCk9o9nQvKmXMouHNqYgy6NaY7+mTsungybd3bs0vVdvFcwKPWFqG3Lg==",
   "success": true,
   "projectFilePath": "/Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/krisna-dto.csproj",
   "expectedPackageFiles": [
+    "/Users/krisnafirdaus/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/krisnafirdaus/.nuget/packages/bouncycastle.cryptography/2.2.1/bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "/Users/krisnafirdaus/.nuget/packages/google.protobuf/3.25.1/google.protobuf.3.25.1.nupkg.sha512",
     "/Users/krisnafirdaus/.nuget/packages/k4os.compression.lz4/1.3.5/k4os.compression.lz4.1.3.5.nupkg.sha512",

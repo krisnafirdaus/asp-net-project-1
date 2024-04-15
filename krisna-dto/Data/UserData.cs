@@ -131,7 +131,7 @@ namespace krisna_dto.Data
                     command2.Parameters.Clear();
 
 
-                    command2.CommandText = "INSERT INTO UserRol (UserId, Role) VALUES (@userId, @role)";
+                    command2.CommandText = "INSERT INTO UserRoles (UserId, Role) VALUES (@userId, @role)";
                     command2.Parameters.AddWithValue("@userId", userRole.UserId);
                     command2.Parameters.AddWithValue("@role", userRole.Role);
 
@@ -154,6 +154,79 @@ namespace krisna_dto.Data
 
             return result;
 
+        }
+
+        public User? CheckUserAuth(string username)
+        {
+            User? user = null;
+
+            using(MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = "SELECT * from Users WHERE Username = @username";
+
+                    command.Parameters.Clear();
+
+                    command.Parameters.AddWithValue("@username", username);
+
+                    connection.Open();
+
+                    using(MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            user = new User
+                            {
+                                Id = Guid.Parse(reader["Id"].ToString() ?? string.Empty),
+                                Username = reader["Username"].ToString() ?? string.Empty,
+                                Password = reader["Password"].ToString() ?? string.Empty
+                            };
+                        }
+                    }
+
+                    connection.Close();
+                }
+            }
+
+            return user;
+        }
+
+        public UserRole? GetUserRole(Guid userId)
+        {
+            UserRole? userRole = null;
+
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.Parameters.Clear();
+
+                    command.CommandText = "SELECT * from UserRoles WHERE UserId = @userId";
+                    command.Parameters.AddWithValue("@userId", userId);
+
+                    connection.Open();
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            userRole = new UserRole
+                            {
+                                Id = Convert.ToInt32(reader["Id"]),
+                                UserId = Guid.Parse(reader["UserId"].ToString() ?? string.Empty),
+                                Role = reader["Role"].ToString() ?? string.Empty
+                            };
+                        }
+                    }
+
+                    connection.Close();
+                }
+            }
+
+            return userRole;
         }
     }
 }

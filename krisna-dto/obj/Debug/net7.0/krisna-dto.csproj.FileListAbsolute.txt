@@ -62,3 +62,4 @@
 /Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
 /Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
+/Users/krisnafirdaus/Projects/krisna-dto/krisna-dto/bin/Debug/net7.0/BCrypt.Net-Next.dll
