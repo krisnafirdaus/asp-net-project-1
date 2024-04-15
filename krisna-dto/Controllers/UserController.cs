@@ -36,6 +36,8 @@ namespace krisna_dto.Controllers
                     Id = Guid.NewGuid(),
                     Username = userDto.Username,
                     Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
+                    Email = userDto.Email,
+                    IsActivated = false,
                 };
 
                 UserRole userRole = new UserRole
@@ -72,6 +74,11 @@ namespace krisna_dto.Controllers
             User? user = _userData.CheckUserAuth(credential.Username);
 
             if (user == null) return Unauthorized("You do not authorized");
+
+            if (!user.IsActivated)
+            {
+                return Unauthorized("Please Active your account");
+            }
 
             UserRole? userRole = _userData.GetUserRole(user.Id);
 

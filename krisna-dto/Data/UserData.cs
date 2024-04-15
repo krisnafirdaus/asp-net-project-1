@@ -120,10 +120,12 @@ namespace krisna_dto.Data
                     command1.Transaction = transaction;
                     command1.Parameters.Clear();
 
-                    command1.CommandText = "INSERT INTO Users (Id, Username, Password) VALUES (@id, @username, @password)";
+                    command1.CommandText = "INSERT INTO Users (Id, Username, Password, Email, IsActivated) VALUES (@id, @username, @password, @email, @isActivated)";
                     command1.Parameters.AddWithValue("@id", user.Id);
                     command1.Parameters.AddWithValue("@username", user.Username);
                     command1.Parameters.AddWithValue("@password", user.Password);
+                    command1.Parameters.AddWithValue("@email", user.Email);
+                    command1.Parameters.AddWithValue("@isActivated", user.IsActivated);
 
                     MySqlCommand command2 = new MySqlCommand();
                     command2.Connection = connection;
