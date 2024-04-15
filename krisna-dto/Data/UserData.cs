@@ -185,6 +185,7 @@ namespace krisna_dto.Data
                                 Username = reader["Username"].ToString() ?? string.Empty,
                                 Password = reader["Password"].ToString() ?? string.Empty,
                                 Email = reader["Email"].ToString() ?? string.Empty,
+                                IsActivated = Convert.ToBoolean(reader["IsActivated"])
                             };
                         }
                     }
@@ -230,6 +231,29 @@ namespace krisna_dto.Data
             }
 
             return userRole;
+        }
+
+        public bool ActiveUser(Guid id)
+        {
+            bool result = false;
+
+            using(MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                MySqlCommand command = new MySqlCommand();
+                command.Connection = connection;
+                command.Parameters.Clear();
+
+                command.CommandText = "UPDATE Users SET IsActivated = 1 WHERE Id = @Id";
+                command.Parameters.AddWithValue("@Id", id);
+
+                connection.Open();
+                result = command.ExecuteNonQuery() > 0 ? true : false;
+
+                connection.Close();
+
+            }
+
+            return result;
         }
     }
 }
