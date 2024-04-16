@@ -15,7 +15,8 @@ namespace krisna_dto.Email
 		private readonly string _password;
 		private readonly string _port;
 
-		public EmailService(IConfiguration configuration)
+        #region Sender / Receiver
+        public EmailService(IConfiguration configuration)
 		{
 			_configuration = configuration;
 			_fromDisplayName = _configuration.GetSection("EmailSettings:FromDisplayName").Value;
