@@ -1,5 +1,5 @@
 ﻿using System;
-namespace krisna_dto.Email
+namespace krisna_dto.DTOs.Email
 {
 	public class EmailActivationModel
 	{

@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using krisna_dto.Data;
-using krisna_dto.Email;
+using krisna_dto.DTOs.Email;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;

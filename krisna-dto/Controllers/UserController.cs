@@ -7,28 +7,27 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
-using krisna_dto.Email;
+using krisna_dto.DTOs.Email;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace krisna_dto.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
-	public class UserController : ControllerBase
-	{
+    public class UserController : ControllerBase
+    {
         private readonly UserData _userData;
         private readonly IConfiguration _configuration;
         private readonly EmailService _mail;
 
-        public UserController(UserData userData, IConfiguration configuration)
+        public UserController(UserData userData, IConfiguration configuration, EmailService mail)
         {
             _userData = userData;
             _configuration = configuration;
+            _mail = mail;
         }
 
         [HttpPost("CreateUser")]
-
         public async Task<IActionResult> CreateUser([FromBody] UserDTO userDto)
         {
             try
@@ -39,7 +38,7 @@ namespace krisna_dto.Controllers
                     Username = userDto.Username,
                     Password = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
                     Email = userDto.Email,
-                    IsActivated = false,
+                    IsActivated = false
                 };
 
                 UserRole userRole = new UserRole
@@ -67,20 +66,22 @@ namespace krisna_dto.Controllers
         }
 
         [HttpPost("login")]
-
         public IActionResult Login([FromBody] LoginRequestDTO credential)
         {
-            if (credential is null) return BadRequest("Invalid client request");
+            if (credential is null)
+                return BadRequest("Invalid client request");
 
-            if(string.IsNullOrEmpty(credential.Username) || string.IsNullOrEmpty(credential.Password)) return BadRequest("Invalid client request");
+            if (string.IsNullOrEmpty(credential.Username) || string.IsNullOrEmpty(credential.Password))
+                return BadRequest("Invalid client request");
 
             User? user = _userData.CheckUserAuth(credential.Username);
 
-            if (user == null) return Unauthorized("You do not authorized");
+            if (user == null)
+                return Unauthorized("You do not authorized");
 
             if (!user.IsActivated)
             {
-                return Unauthorized("Please Active your account");
+                return Unauthorized("Please activate your account");
             }
 
             UserRole? userRole = _userData.GetUserRole(user.Id);
@@ -88,24 +89,22 @@ namespace krisna_dto.Controllers
             bool isVerified = BCrypt.Net.BCrypt.Verify(credential.Password, user?.Password);
             //bool isVerified = user?.Password == credential.Password;
 
-            if(user != null && !isVerified)
+            if (user != null && !isVerified)
             {
-                return BadRequest("Inccorrect Password! Please check your password");
+                return BadRequest("Incorrect Password! Please check your password!");
             }
             else
             {
-                var key = _configuration.GetSection("JwtConfig:Key").Value;
-                var JwtKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
+                _configuration.GetSection("JwtConfig:Key").Value));
 
-                var claims = new Claim[]
-                {
+                var claims = new Claim[] {
                     new Claim(ClaimTypes.Name, user.Username),
                     new Claim(ClaimTypes.Role, userRole.Role)
                 };
 
                 var signingCredential = new SigningCredentials(
-                    JwtKey, SecurityAlgorithms.HmacSha256Signature
-                );
+                    key, SecurityAlgorithms.HmacSha256Signature);
 
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
@@ -121,66 +120,94 @@ namespace krisna_dto.Controllers
                 string token = tokenHandler.WriteToken(securityToken);
 
                 return Ok(new LoginResponseDTO { Token = token });
-
             }
         }
 
         [HttpGet("ActivateUser")]
-
         public IActionResult ActivateUser(Guid id, string username)
         {
             try
             {
                 User? user = _userData.CheckUserAuth(username);
 
-                if (user == null) return BadRequest("Activation Failed");
+                if (user == null)
+                    return BadRequest("Activation Failed");
 
-                if (user.IsActivated == true) return BadRequest("User has been activated");
+                if (user.IsActivated == true)
+                    return BadRequest("User has been activated");
 
-                bool result = _userData.ActiveUser(id);
+                bool result = _userData.ActivateUser(id);
 
-                if (result) return Ok("User Activated"); else return StatusCode(500, "Activation Failed");
+                if (result)
+                    return Ok("User activated");
+                else
+                    return StatusCode(500, "Activation Failed");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
         }
 
         [HttpPost("ForgetPassword")]
-
         public async Task<IActionResult> ForgetPassword(string email)
         {
             try
             {
-                if (string.IsNullOrEmpty(email)) return BadRequest("Email is empty");
+                if (string.IsNullOrEmpty(email))
+                    return BadRequest("Email is empty");
 
-                bool sendEmail = await SendEmailForgetPassword(email);
+                bool sendMail = await SendEmailForgetPassword(email);
 
-                if (sendEmail)
+                if (sendMail)
                 {
-                    return Ok("Mail Sent");
+                    return Ok("Mail sent");
                 }
                 else
                 {
                     return StatusCode(500, "Error");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
+
+        }
+
+        private async Task<bool> SendEmailForgetPassword(string email)
+        {
+            // send email
+            List<string> to = new List<string>();
+            to.Add(email);
+
+            string subject = "Forget Password";
+
+            var param = new Dictionary<string, string?>
+                    {
+                        {"email", email }
+                    };
+
+            string callbackUrl = QueryHelpers.AddQueryString("https://localhost:3000/formResetPassword", param);
+
+            string body = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>";
+
+            EmailModel mailModel = new EmailModel(to, subject, body);
+
+            bool mailResult = await _mail.SendAsync(mailModel, new CancellationToken());
+
+            return mailResult;
         }
 
         [HttpPost("ResetPassword")]
-
         public IActionResult ResetPassword([FromBody] ResetPasswordDTO resetPassword)
         {
             try
             {
-                if (resetPassword == null) return BadRequest("No Data");
+                if (resetPassword == null)
+                    return BadRequest("No Data");
 
-                if(resetPassword.Password != resetPassword.ConfirmPassword)
+                if (resetPassword.Password != resetPassword.ConfirmPassword)
                 {
                     return BadRequest("Password doesn't match");
                 }
@@ -202,46 +229,28 @@ namespace krisna_dto.Controllers
             }
         }
 
-        private async Task<bool> SendEmailForgetPassword(string email)
-        {
-            List<string> to = new List<string>();
-            to.Add(email);
 
-            string subject = "Forget Password";
-
-            var param = new Dictionary<string, string?>
-            {
-                {"username", email}
-            };
-
-            string callbackUrl = QueryHelpers.AddQueryString("https://localhost:3000/formResetPassword", param);
-
-            string body = "Please reset your password <a href=\"" + callbackUrl + "\">here</a>";
-
-            EmailModel mailModel = new EmailModel(to, subject, body);
-
-            bool mailResult = await _mail.SendAsync(mailModel, new CancellationToken());
-
-            return mailResult;
-        }
 
         private async Task<bool> SendEmailActivation(User user)
         {
-            if (user == null) return false;
+            if (user == null)
+                return false;
 
-            if (string.IsNullOrEmpty(user.Email)) return false;
-
+            if (string.IsNullOrEmpty(user.Email))
+                return false;
+            // send email
             List<string> to = new List<string>();
             to.Add(user.Email);
 
             string subject = "Account Activation";
-            var param = new Dictionary<string, string?>
-            {
-                {"id", user.Id.ToString() },
-                {"username", user.Username }
-            };
 
-            string callbackUrl = QueryHelpers.AddQueryString("https://localhost:7078/api/User/ActivateUser", param);
+            var param = new Dictionary<string, string?>
+                    {
+                        {"id", user.Id.ToString() },
+                        {"username", user.Username }
+                    };
+
+            string callbackUrl = QueryHelpers.AddQueryString("https://localhost:7223/api/User/ActivateUser", param);
 
             //string body = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>";
 
@@ -253,12 +262,11 @@ namespace krisna_dto.Controllers
 
             string body = _mail.GetEmailTemplate(model);
 
+
             EmailModel mailModel = new EmailModel(to, subject, body);
             bool mailResult = await _mail.SendAsync(mailModel, new CancellationToken());
             return mailResult;
         }
-
-        
     }
 }
 

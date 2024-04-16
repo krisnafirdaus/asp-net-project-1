@@ -1,5 +1,5 @@
 ﻿using System;
-namespace krisna_dto.Email
+namespace krisna_dto.DTOs.Email
 {
 	public class EmailModel
 	{
@@ -11,7 +11,7 @@ namespace krisna_dto.Email
 		public string? Body { get; }
 
 		public EmailModel(
-			List<string> to, string subject, string body = null, List<string>? bcc = null, List<string>? cc = null
+			List<string> to, string subject, string? body = null, List<string>? bcc = null, List<string>? cc = null
 		)
 		{
 			To = to;

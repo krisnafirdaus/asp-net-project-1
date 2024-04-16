@@ -26,13 +26,13 @@
     <Folder Include="Data\" />
     <Folder Include="DTOs\Book\" />
     <Folder Include="DTOs\User\" />
-    <Folder Include="Email\" />
+    <Folder Include="DTOs\Email\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Models\" />
     <None Remove="Data\" />
     <None Remove="DTOs\Book\" />
     <None Remove="DTOs\User\" />
-    <None Remove="Email\" />
+    <None Remove="DTOs\Email\" />
   </ItemGroup>
 </Project>

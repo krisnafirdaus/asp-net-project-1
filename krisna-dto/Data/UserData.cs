@@ -233,7 +233,7 @@ namespace krisna_dto.Data
             return userRole;
         }
 
-        public bool ActiveUser(Guid id)
+        public bool ActivateUser(Guid id)
         {
             bool result = false;
 
