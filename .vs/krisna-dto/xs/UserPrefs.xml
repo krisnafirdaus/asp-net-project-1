@@ -1,43 +1,34 @@
 ﻿<Properties StartupConfiguration="{8047B2D5-9131-4F90-92D5-4BEC1AC11A7D}|https">
-  <MonoDevelop.Ide.ItemProperties.krisna-dto PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workbench ActiveDocument="krisna-dto/Controllers/UserController.cs">
     <Files>
-      <File FileName="krisna-dto/Program.cs" Line="40" Column="8" />
-      <File FileName="krisna-dto/Controllers/WeatherForecastController.cs" />
-      <File FileName="krisna-dto/Models/Book.cs" />
+      <File FileName="krisna-dto/Models/UserRole.cs" Line="14" Column="1" IsPinned="True" />
+      <File FileName="krisna-dto/Data/UserData.cs" Line="261" Column="33" />
+      <File FileName="krisna-dto/Controllers/TestController.cs" />
+      <File FileName="krisna-dto/Controllers/UserController.cs" Line="177" Column="38" />
+      <File FileName="krisna-dto/appsettings.json" Line="21" Column="18" />
       <File FileName="krisna-dto/Data/BookData.cs" />
-      <File FileName="krisna-dto/Controllers/BookController.cs" Line="24" Column="12" />
-      <File FileName="krisna-dto/DTOs/Book/BookDTO.cs" />
-      <File FileName="krisna-dto/Data/UserData.cs" Line="106" Column="21" />
-      <File FileName="krisna-dto/Models/User.cs" />
-      <File FileName="krisna-dto/Models/UserRole.cs" />
-      <File FileName="krisna-dto/DTOs/User/UserDTO.cs" />
-      <File FileName="krisna-dto/Controllers/UserController.cs" Line="78" Column="93" />
-      <File FileName="krisna-dto/appsettings.Development.json" />
-      <File FileName="krisna-dto/appsettings.json" Line="13" Column="79" />
-      <File FileName="krisna-dto/WeatherForecast.cs" />
-      <File FileName="krisna-dto/Properties/launchSettings.json" Line="26" Column="48" />
-      <File FileName="krisna-dto/DTOs/User/LoginRequestDTO.cs" Line="7" Column="55" />
-      <File FileName="krisna-dto/DTOs/User/LoginResponseDTO.cs" Line="6" Column="52" />
-      <File FileName="krisna-dto/Controllers/ValuesController.cs" Line="23" Column="34" />
+      <File FileName="krisna-dto/Email/EmailModel.cs" Line="13" Column="10" />
+      <File FileName="krisna-dto/Email/EmailService.cs" Line="70" Column="49" />
+      <File FileName="krisna-dto/Controllers/BookController.cs" />
+      <File FileName="krisna-dto/Program.cs" Line="45" Column="44" />
+      <File FileName="krisna-dto/Email/MailConstant.cs" Line="6" Column="50" />
+      <File FileName="krisna-dto/Email/EmailActivationModel.cs" Line="8" Column="35" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="krisna-dto">
+          <Node name="krisna-dto" expanded="True">
             <Node name="krisna-dto">
-              <Node name="Dependencies" expanded="True">
-                <Node name="PackageDependencies" expanded="True" />
-              </Node>
               <Node name="Controllers" expanded="True">
                 <Node name="UserController.cs" selected="True" />
               </Node>
-              <Node name="DTOs" expanded="True">
-                <Node name="User" expanded="True" />
-              </Node>
+              <Node name="Data" expanded="True" />
+              <Node name="Email" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
             </Node>
@@ -46,7 +37,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.krisna-dto PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

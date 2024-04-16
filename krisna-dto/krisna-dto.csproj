@@ -16,6 +16,8 @@
     <PackageReference Include="MySql.Data" Version="8.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.18" />
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="MailKit" Version="4.5.0" />
+    <PackageReference Include="RazorEngineCore" Version="2023.11.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,11 +26,13 @@
     <Folder Include="Data\" />
     <Folder Include="DTOs\Book\" />
     <Folder Include="DTOs\User\" />
+    <Folder Include="Email\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Models\" />
     <None Remove="Data\" />
     <None Remove="DTOs\Book\" />
     <None Remove="DTOs\User\" />
+    <None Remove="Email\" />
   </ItemGroup>
 </Project>

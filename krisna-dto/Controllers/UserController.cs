@@ -8,16 +8,19 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.WebUtilities;
+using krisna_dto.Email;
 
 namespace krisna_dto.Controllers
 {
-    [Route("ap/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
 
 	public class UserController : ControllerBase
 	{
         private readonly UserData _userData;
         private readonly IConfiguration _configuration;
+        private readonly EmailService _mail;
 
         public UserController(UserData userData, IConfiguration configuration)
         {
@@ -27,7 +30,7 @@ namespace krisna_dto.Controllers
 
         [HttpPost("CreateUser")]
 
-        public IActionResult CreateUser([FromBody] UserDTO userDto)
+        public async Task<IActionResult> CreateUser([FromBody] UserDTO userDto)
         {
             try
             {
@@ -50,6 +53,7 @@ namespace krisna_dto.Controllers
 
                 if (result)
                 {
+                    bool mailResult = await SendEmailActivation(user);
                     return StatusCode(201, userDto);
                 }
                 else
@@ -120,6 +124,61 @@ namespace krisna_dto.Controllers
                 return Ok(new LoginResponseDTO { Token = token });
 
             }
+        }
+
+        [HttpGet("ActivateUser")]
+
+        public IActionResult ActivateUser(Guid id, string username)
+        {
+            try
+            {
+                User? user = _userData.CheckUserAuth(username);
+
+                if (user == null) return BadRequest("Activation Failed");
+
+                if (user.IsActivated == true) return BadRequest("User has been activated");
+
+                bool result = _userData.ActiveUser(id);
+
+                if (result) return Ok("User Activated"); else return StatusCode(500, "Activation Failed");
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        private async Task<bool> SendEmailActivation(User user)
+        {
+            if (user == null) return false;
+
+            if (string.IsNullOrEmpty(user.Email)) return false;
+
+            List<string> to = new List<string>();
+            to.Add(user.Email);
+
+            string subject = "Account Activation";
+            var param = new Dictionary<string, string?>
+            {
+                {"id", user.Id.ToString() },
+                {"username", user.Username }
+            };
+
+            string callbackUrl = QueryHelpers.AddQueryString("https://localhost:7078/api/User/ActivateUser", param);
+
+            //string body = "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>";
+
+            EmailActivationModel model = new EmailActivationModel()
+            {
+                Email = user.Email,
+                Link = callbackUrl
+            };
+
+            string body = _mail.GetEmailTemplate(model);
+
+            EmailModel mailModel = new EmailModel(to, subject, body);
+            bool mailResult = await _mail.SendAsync(mailModel, new CancellationToken());
+            return mailResult;
         }
     }
 }

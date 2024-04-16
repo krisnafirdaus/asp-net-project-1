@@ -255,6 +255,13 @@ namespace krisna_dto.Data
 
             return result;
         }
+
+        public bool ResetPassword(string email, string password)
+        {
+            bool result = false;
+
+            return result;
+        }
     }
 }
 

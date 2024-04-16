@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using krisna_dto.Data;
+using krisna_dto.Email;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -41,6 +42,7 @@ builder.Services.AddSwaggerGen(option =>
 });
 builder.Services.AddScoped<BookData>();
 builder.Services.AddScoped<UserData>();
+builder.Services.AddScoped<EmailService>();
 
 builder.Services.AddCors();
 
