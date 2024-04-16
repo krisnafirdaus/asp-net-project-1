@@ -1,15 +1,14 @@
 ﻿using System;
 using krisna_dto.Models;
 using krisna_dto.DTOs.User;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using krisna_dto.Data;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.WebUtilities;
 using krisna_dto.Email;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace krisna_dto.Controllers
 {
@@ -148,6 +147,84 @@ namespace krisna_dto.Controllers
             }
         }
 
+        [HttpPost("ForgetPassword")]
+
+        public async Task<IActionResult> ForgetPassword(string email)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(email)) return BadRequest("Email is empty");
+
+                bool sendEmail = await SendEmailForgetPassword(email);
+
+                if (sendEmail)
+                {
+                    return Ok("Mail Sent");
+                }
+                else
+                {
+                    return StatusCode(500, "Error");
+                }
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost("ResetPassword")]
+
+        public IActionResult ResetPassword([FromBody] ResetPasswordDTO resetPassword)
+        {
+            try
+            {
+                if (resetPassword == null) return BadRequest("No Data");
+
+                if(resetPassword.Password != resetPassword.ConfirmPassword)
+                {
+                    return BadRequest("Password doesn't match");
+                }
+
+                bool reset = _userData.ResetPassword(resetPassword.Email, BCrypt.Net.BCrypt.HashPassword(resetPassword.Password));
+
+                if (reset)
+                {
+                    return Ok("Reset password OK");
+                }
+                else
+                {
+                    return StatusCode(500, "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        private async Task<bool> SendEmailForgetPassword(string email)
+        {
+            List<string> to = new List<string>();
+            to.Add(email);
+
+            string subject = "Forget Password";
+
+            var param = new Dictionary<string, string?>
+            {
+                {"username", email}
+            };
+
+            string callbackUrl = QueryHelpers.AddQueryString("https://localhost:3000/formResetPassword", param);
+
+            string body = "Please reset your password <a href=\"" + callbackUrl + "\">here</a>";
+
+            EmailModel mailModel = new EmailModel(to, subject, body);
+
+            bool mailResult = await _mail.SendAsync(mailModel, new CancellationToken());
+
+            return mailResult;
+        }
+
         private async Task<bool> SendEmailActivation(User user)
         {
             if (user == null) return false;
@@ -180,6 +257,8 @@ namespace krisna_dto.Controllers
             bool mailResult = await _mail.SendAsync(mailModel, new CancellationToken());
             return mailResult;
         }
+
+        
     }
 }
 

@@ -260,7 +260,29 @@ namespace krisna_dto.Data
         {
             bool result = false;
 
-            return result;
+            string query = "UPDATE Users SET Password = @Password WHERE Email = @Email";
+
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                using (MySqlCommand command = new MySqlCommand())
+                {
+                    command.Connection = connection;
+                    command.Parameters.Clear();
+
+                    command.CommandText = query;
+
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    connection.Open();
+
+                    result = command.ExecuteNonQuery() > 0 ? true : false;
+
+                    connection.Close();
+                } 
+            }
+
+                return result;
         }
     }
 }
