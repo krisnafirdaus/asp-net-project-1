@@ -4,39 +4,40 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="krisna-dto/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="krisna-dto/DTOs/Email/MailConstant.cs">
     <Files>
       <File FileName="krisna-dto/Models/UserRole.cs" Line="14" Column="1" IsPinned="True" />
-      <File FileName="krisna-dto/Controllers/TestController.cs" Line="1" Column="1" />
-      <File FileName="krisna-dto/Controllers/UserController.cs" Line="223" Column="48" />
+      <File FileName="krisna-dto/Controllers/TestController.cs" />
+      <File FileName="krisna-dto/Controllers/UserController.cs" Line="19" Column="30" />
       <File FileName="krisna-dto/appsettings.json" Line="20" Column="30" />
       <File FileName="krisna-dto/Data/BookData.cs" />
       <File FileName="krisna-dto/Controllers/BookController.cs" />
-      <File FileName="krisna-dto/Program.cs" Line="45" Column="44" />
-      <File FileName="krisna-dto/Email/MailConstant.cs" Line="6" Column="9487" />
-      <File FileName="krisna-dto/Email/EmailActivationModel.cs" Line="8" Column="21" />
-      <File FileName="krisna-dto/Properties/launchSettings.json" Line="1" Column="1" />
-      <File FileName="krisna-dto/Email/EmailService.cs" Line="18" Column="2" />
-      <File FileName="krisna-dto/Models/User.cs" Line="1" Column="1" />
-      <File FileName="krisna-dto/DTOs/User/ResetPasswordDTO.cs" Line="8" Column="32" />
-      <File FileName="krisna-dto/Email/EmailModel.cs" Line="13" Column="10" />
-      <File FileName="krisna-dto/DTOs/User/UserDTO.cs" Line="1" Column="1" />
-      <File FileName="krisna-dto/Controllers/WeatherForecastController.cs" Line="1" Column="1" />
-      <File FileName="krisna-dto/appsettings.Development.json" Line="1" Column="1" />
+      <File FileName="krisna-dto/Program.cs" Line="3" Column="29" />
+      <File FileName="krisna-dto/Email/MailConstant.cs" Line="7" Column="6" />
+      <File FileName="krisna-dto/Email/EmailActivationModel.cs" Line="2" Column="32" />
+      <File FileName="krisna-dto/Properties/launchSettings.json" />
+      <File FileName="krisna-dto/Email/EmailService.cs" Line="29" Column="33" />
+      <File FileName="krisna-dto/Models/User.cs" />
+      <File FileName="krisna-dto/DTOs/User/ResetPasswordDTO.cs" />
+      <File FileName="krisna-dto/Email/EmailModel.cs" Line="14" Column="44" />
+      <File FileName="krisna-dto/DTOs/User/UserDTO.cs" />
+      <File FileName="krisna-dto/Controllers/WeatherForecastController.cs" />
+      <File FileName="krisna-dto/appsettings.Development.json" />
+      <File FileName="krisna-dto/DTOs/User/LoginRequestDTO.cs" Line="2" Column="26" />
+      <File FileName="krisna-dto/Data/UserData.cs" Line="236" Column="33" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="krisna-dto">
-            <Node name="krisna-dto">
+            <Node name="krisna-dto" expanded="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="DTOs" expanded="True">
+                <Node name="Email" expanded="True" />
                 <Node name="User" expanded="True" />
               </Node>
               <Node name="Models" expanded="True" />
-              <Node name="Properties" expanded="True" />
-              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
